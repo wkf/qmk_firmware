@@ -418,6 +418,7 @@ void process_action(keyrecord_t *record, action_t action) {
 #    endif
                             {
 #    ifdef BILATERAL_COMBINATIONS
+                                // mod-tap tap
                                 bilateral_combinations_tap(event.key);
 #    endif
                                 dprint("MODS_TAP: Tap: register_code\n");
@@ -427,6 +428,7 @@ void process_action(keyrecord_t *record, action_t action) {
                             dprint("MODS_TAP: No tap: add_mods\n");
                             register_mods(mods);
 #    ifdef BILATERAL_COMBINATIONS
+                            // mod-tap hold
                             bilateral_combinations_hold(action.key.code, action.layer_tap.code, mods, event.key);
 #    endif
                         }
@@ -443,6 +445,7 @@ void process_action(keyrecord_t *record, action_t action) {
                             dprint("MODS_TAP: No tap: add_mods\n");
                             unregister_mods(mods);
 #    ifdef BILATERAL_COMBINATIONS
+                            // mod-tap release
                             bilateral_combinations_release(action.key.code);
 #    endif
                         }
@@ -619,6 +622,7 @@ void process_action(keyrecord_t *record, action_t action) {
                     if (event.pressed) {
                         if (tap_count > 0) {
 #        ifdef BILATERAL_COMBINATIONS
+                            // layer-tap tap
                             bilateral_combinations_tap(event.key);
 #        endif
                             dprint("KEYMAP_TAP_KEY: Tap: register_code\n");
