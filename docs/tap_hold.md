@@ -227,7 +227,7 @@ hid_listen | sed -u 's/BILATERAL_COMBINATIONS: change/&\a/g'
 =======
 ## Retro Shift
 
-Holding and releasing a Tap Hold key without pressing another key will result in only the hold. With Retro Shift enabled this action will produce a shifted version of the tap keycode.
+Holding and releasing a Tap Hold key without pressing another key will result in only the hold. With Retro Shift enabled this action will also produce a shifted version of the tap keycode on release.
 
 This is a supplement to [Auto Shift](feature_auto_shift.md), which does not support Tap Hold.  Auto Shift is not required to be enabled, but for consistency it should be enabled and configured with the Auto Shift timeout matching the tapping term.  Retro Shift applies to the same tap keycodes as Auto Shift and uses the Auto Shift options `NO_AUTO_SHIFT_SPECIAL`, `NO_AUTO_SHIFT_NUMERIC`, `NO_AUTO_SHIFT_ALPHA`, and `AUTO_SHIFT_MODIFIERS` if defined.
 
