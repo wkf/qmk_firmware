@@ -62,15 +62,15 @@ enum custom_keycodes {
 /*   [WV_ENTER] = COMBO(wv_combo, KC_ENTER) */
 /* }; */
 
-enum dances {
-  TD_Q_ESC,
-  TD_SCOLON_SLASH,
-};
+/* enum dances { */
+/*   TD_Q_ESC, */
+/*   TD_SCOLON_SLASH, */
+/* }; */
 
-qk_tap_dance_action_t tap_dance_actions[] = {
-  [TD_Q_ESC] = ACTION_TAP_DANCE_DOUBLE(KC_Q, KC_ESCAPE),
-  [TD_SCOLON_SLASH] = ACTION_TAP_DANCE_DOUBLE(KC_SCOLON, KC_SLASH)
-};
+/* qk_tap_dance_action_t tap_dance_actions[] = { */
+/*   [TD_Q_ESC] = ACTION_TAP_DANCE_DOUBLE(KC_Q, KC_ESCAPE), */
+/*   [TD_SCOLON_SLASH] = ACTION_TAP_DANCE_DOUBLE(KC_SCOLON, KC_SLASH) */
+/* }; */
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
@@ -78,14 +78,14 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
           return TAPPING_TERM - 30;
         case RSFT_T(KC_H):
           return TAPPING_TERM - 30;
-        case LT(1,KC_BSPACE):
-          return TAPPING_TERM + 30;
-        case LT(2,KC_SPACE):
-          return TAPPING_TERM + 30;
-        case LT(3,KC_ESCAPE):
-          return TAPPING_TERM + 30;
-        case LT(4,KC_ENTER):
-          return TAPPING_TERM + 30;
+        /* case LT(1,KC_BSPACE): */
+        /*   return TAPPING_TERM + 30; */
+        /* case LT(2,KC_SPACE): */
+        /*   return TAPPING_TERM + 30; */
+        /* case LT(3,KC_ESCAPE): */
+        /*   return TAPPING_TERM + 30; */
+        /* case LT(4,KC_ENTER): */
+        /*   return TAPPING_TERM + 30; */
         default:
             return TAPPING_TERM;
     }
@@ -108,8 +108,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                           ____,                 KC_SCOLON,               KC_Q,               KC_J,              KC_K,                 KC_X,
                           KC_B,                 KC_M,                    KC_W,               KC_V,              KC_Z,                 ____,
 
-                          ____,                 ____,                    ____,               ____,              ____,                 ____,
-                          ____,                 ____,                    ____,               ____,              ____,                 ____,
+                          ____,                 ____,                    ____,               ____,              LT(5,KC_DELETE),      ____,
+                          ____,                 LT(6,KC_TAB),            ____,               ____,              ____,                 ____,
 
                           LT(1,KC_BSPACE),      LT(3,KC_ESCAPE),         ____,
                           ____,                 LT(4,KC_ENTER),          LT(2,KC_SPACE)
@@ -120,38 +120,38 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                           ____,                 ____,                    ____,               ____,              ____,                 ____,          ____,
 
                           ____,                 ____,                    ____,               ____,              ____,                 ____,          ____,
-                          ____,                 KC_DLR,                  KC_7,               KC_8,              KC_9,                 KC_PLUS,       ____,
+                          ____,                 KC_LBRC,                KC_7,               KC_8,              KC_9,                  KC_GRAVE,      ____,
 
                           ____,                 ____,                    ____,               ____,              ____,                 ____,          ____,
                           ____,                 KC_SLASH,                KC_4,               KC_5,              KC_6,                 KC_MINUS,      ____,
 
                           ____,                 ____,                    ____,               ____,              ____,                 ____,
-                          KC_PERC,              KC_1,                    KC_2,               KC_3,              KC_ASTR,              ____,
+                          KC_BSLASH,            KC_1,                    KC_2,               KC_3,              KC_EQUAL,             ____,
 
                           ____,                 ____,                    ____,               ____,              ____,                 ____,
                           ____,                 ____,                    ____,               ____,              ____,                 ____,
 
                           ____,                 ____,                    ____,
-                          ____,                 KC_EQUAL,                KC_0
+                          ____,                 KC_RBRACKET,             KC_0
                           ),
 
   [2] = LAYOUT_moonlander(
                           ____,                 ____,                    ____,               ____,              ____,                 ____,          ____,
                           ____,                 ____,                    ____,               ____,              ____,                 ____,          ____,
 
-                          ____,                 KC_GRAVE,                KC_TILD,            KC_AT,             KC_HASH,              KC_CIRC,       ____,
+                          ____,                 ____,                    ____,               ____,              ____,                 ____,          ____,
                           ____,                 ____,                    ____,               ____,              ____,                 ____,          ____,
 
-                          ____,                 KC_UNDS,                 KC_LCBR,            KC_LBRACKET,       KC_LPRN,              KC_AMPR,       ____,
+                          ____,                 KC_LEFT,                 KC_DOWN,            KC_UP,             KC_RIGHT,             ____,          ____,
                           ____,                 ____,                    ____,               ____,              ____,                 ____,          ____,
 
-                          ____,                 KC_BSLASH,               KC_RCBR,            KC_RBRACKET,       KC_RPRN,              KC_PIPE,
+                          ____,                 KC_HOME,                 KC_PGDOWN,          KC_PGUP,           KC_END,               ____,
                           ____,                 ____,                    ____,               ____,              ____,                 ____,
 
                           ____,                 ____,                    ____,               ____,              ____,                 ____,
                           ____,                 ____,                    ____,               ____,              ____,                 ____,
 
-                          KC_QUES,              KC_EXLM,                 ____,
+                          ____,                 ____,                    ____,
                           ____,                 ____,                    ____
                           ),
 
@@ -160,29 +160,30 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                           ____,                 ____,                    ____,               ____,              ____,                 ____,          ____,
 
                           ____,                 ____,                    ____,               ____,              ____,                 ____,          ____,
-                          ____,                 ____,                    ____,               ____,              ____,                 ____,          ____,
+                          ____,                 KC_TILD,                 KC_AMPR,            KC_ASTR,           KC_LPRN,              KC_LCBR,       ____,
 
                           ____,                 ____,                    ____,               ____,              ____,                 ____,          ____,
-                          ____,                 ____,                    KC_LEFT,            KC_UP,             KC_DOWN,              KC_RIGHT,      ____,
+                          ____,                 KC_QUES,                 KC_DLR,             KC_PERC,           KC_CIRC,              KC_UNDS,       ____,
 
                           ____,                 ____,                    ____,               ____,              ____,                 ____,
-                          ____,                 KC_HOME,                 KC_PGUP,            KC_PGDOWN,         KC_END,               ____,
+                          KC_PIPE,              KC_EXLM,                 KC_AT,              KC_HASH,           KC_PLUS,              ____,
 
                           ____,                 ____,                    ____,               ____,              ____,                 ____,
                           ____,                 ____,                    ____,               ____,              ____,                 ____,
 
                           ____,                 ____,                    ____,
-                          ____,                 MO(6),                   KC_TAB
+                          ____,                 KC_RCBR,                 KC_RPRN
                           ),
 
   [4] = LAYOUT_moonlander(
+
                           ____,                 ____,                    ____,               ____,              ____,                 ____,          ____,
                           ____,                 ____,                    ____,               ____,              ____,                 ____,          ____,
 
                           ____,                 ____,                    ____,               LGUI(LSFT(KC_3)),  LGUI(LSFT(KC_4)),     ____,          ____,
                           ____,                 ____,                    ____,               ____,              ____,                 ____,          ____,
 
-                          ____,                 KC_MEDIA_PREV_TRACK,     KC_AUDIO_VOL_DOWN,  KC_AUDIO_VOL_UP,   KC_MEDIA_NEXT_TRACK,  KC_AUDIO_MUTE, ____,
+                          ____,                 KC_MEDIA_PREV_TRACK,     KC_AUDIO_VOL_DOWN,  KC_AUDIO_VOL_UP,   KC_MEDIA_NEXT_TRACK,  ____,          ____,
                           ____,                 ____,                    ____,               ____,              ____,                 ____,          ____,
 
                           ____,                 ____,                    ____,               ____,              LGUI(KC_BSLASH),      ____,
@@ -191,7 +192,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                           ____,                 ____,                    ____,               ____,              ____,                 ____,
                           ____,                 ____,                    ____,               ____,              ____,                 ____,
 
-                          KC_MEDIA_PLAY_PAUSE,  MO(5),                   ____,
+                          KC_MEDIA_PLAY_PAUSE,  KC_AUDIO_MUTE,           ____,
                           ____,                 ____,                    ____
                           ),
 
@@ -200,38 +201,37 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                           ____,                 ____,                    ____,               ____,              ____,                 ____,          ____,
 
                           ____,                 ____,                    ____,               ____,              ____,                 ____,          ____,
-                          ____,                 ____,                    ____,               ____,              ____,                 ____,          ____,
+                          ____,                 KC_F5,                   KC_F6,              KC_F7,             KC_F12,               ____,          ____,
 
                           ____,                 ____,                    ____,               ____,              ____,                 ____,          ____,
-                          ____,                 ____,                    KC_MS_LEFT,         KC_MS_UP,          KC_MS_DOWN,           KC_MS_RIGHT,   ____,
+                          ____,                 KC_F4,                   KC_F5,              KC_F6,             KC_F11,               ____,          ____,
 
                           ____,                 ____,                    ____,               ____,              ____,                 ____,
-                          ____,                 KC_MS_WH_LEFT,           KC_MS_WH_UP,        KC_MS_WH_DOWN,     KC_MS_WH_RIGHT,       ____,
+                          ____,                 KC_F1,                   KC_F2,              KC_F3,             KC_F10,               ____,
 
                           ____,                 ____,                    ____,               ____,              ____,                 ____,
                           ____,                 ____,                    ____,               ____,              ____,                 ____,
 
                           ____,                 ____,                    ____,
-                          ____,                 KC_MS_BTN2,              KC_MS_BTN1
+                          ____,                 RESET,                   ____
                           ),
-
   [6] = LAYOUT_moonlander(
                           ____,                 ____,                    ____,               ____,              ____,                 ____,          ____,
                           ____,                 ____,                    ____,               ____,              ____,                 ____,          ____,
 
-                          ____,                 KC_F9,                   KC_F10,             KC_F11,            KC_F12,               ____,          ____,
+                          ____,                 ____,                    ____,               ____,              ____,                 ____,          ____,
                           ____,                 ____,                    ____,               ____,              ____,                 ____,          ____,
 
-                          ____,                 KC_F5,                   KC_F6,              KC_F7,             KC_F8,                ____,          ____,
+                          ____,                 KC_MS_LEFT,              KC_MS_DOWN,         KC_MS_UP,          KC_MS_RIGHT,          ____,          ____,
                           ____,                 ____,                    ____,               ____,              ____,                 ____,          ____,
 
-                          ____,                 KC_F1,                   KC_F2,              KC_F3,             KC_F4,                ____,
+                          ____,                 KC_MS_WH_LEFT,           KC_MS_WH_DOWN,      KC_MS_WH_UP,       KC_MS_WH_RIGHT,       ____,
                           ____,                 ____,                    ____,               ____,              ____,                 ____,
 
                           ____,                 ____,                    ____,               ____,              ____,                 ____,
                           ____,                 ____,                    ____,               ____,              ____,                 ____,
 
-                          WEBUSB_PAIR,          RESET,                   ____,
+                          KC_MS_BTN1,           KC_MS_BTN2,              ____,
                           ____,                 ____,                    ____
                           ),
 };
@@ -256,7 +256,7 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
     C_NONE,    C_GREEN,   C_YELLOW,  C_GREEN,   C_NONE,
     C_NONE,    C_GREEN,   C_YELLOW,  C_GREEN,   C_NONE,
     C_NONE,    C_GREEN,   C_YELLOW,  C_GREEN,   C_NONE,
-    C_NONE,    C_GREEN,   C_YELLOW,  C_GREEN,   C_NONE,
+    C_NONE,    C_GREEN,   C_YELLOW,  C_GREEN,   C_PINK,
     C_NONE,    C_GREEN,   C_GREEN,   C_GREEN,
     C_NONE,    C_NONE,    C_NONE,
     C_ORANGE,  C_BLUE,    C_NONE,    C_NONE,
@@ -265,7 +265,7 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
     C_NONE,    C_GREEN,   C_YELLOW,  C_GREEN,   C_NONE,
     C_NONE,    C_GREEN,   C_YELLOW,  C_GREEN,   C_NONE,
     C_NONE,    C_GREEN,   C_YELLOW,  C_GREEN,   C_NONE,
-    C_NONE,    C_GREEN,   C_YELLOW,  C_GREEN,   C_NONE,
+    C_NONE,    C_GREEN,   C_YELLOW,  C_GREEN,   C_PINK,
     C_NONE,    C_GREEN,   C_GREEN,   C_GREEN,
     C_NONE,    C_NONE,    C_NONE,
     C_ORANGE,  C_BLUE,    C_NONE,    C_NONE
@@ -293,11 +293,11 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
 
   [2] = {
     C_NONE,    C_NONE,    C_NONE,    C_NONE,    C_NONE,
-    C_NONE,    C_ORANGE,  C_ORANGE,  C_ORANGE,  C_NONE,
-    C_NONE,    C_ORANGE,  C_ORANGE,  C_ORANGE,  C_NONE,
-    C_NONE,    C_ORANGE,  C_ORANGE,  C_ORANGE,  C_NONE,
-    C_NONE,    C_ORANGE,  C_ORANGE,  C_ORANGE,  C_NONE,
-    C_NONE,    C_ORANGE,  C_ORANGE,  C_ORANGE,
+    C_NONE,    C_NONE,    C_ORANGE,  C_ORANGE,  C_NONE,
+    C_NONE,    C_NONE,    C_ORANGE,  C_ORANGE,  C_NONE,
+    C_NONE,    C_NONE,    C_ORANGE,  C_ORANGE,  C_NONE,
+    C_NONE,    C_NONE,    C_ORANGE,  C_ORANGE,  C_NONE,
+    C_NONE,    C_NONE,    C_NONE,    C_NONE,
     C_NONE,    C_NONE,    C_NONE,
     C_ORANGE,  C_ORANGE,  C_NONE,    C_NONE,
 
@@ -322,13 +322,13 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
     C_NONE,    C_BLUE,    C_NONE,    C_NONE,
 
     C_NONE,    C_NONE,    C_NONE,    C_NONE,    C_NONE,
-    C_NONE,    C_NONE,    C_BLUE,    C_BLUE,    C_NONE,
-    C_NONE,    C_NONE,    C_BLUE,    C_BLUE,    C_NONE,
-    C_NONE,    C_NONE,    C_BLUE,    C_BLUE,    C_NONE,
-    C_NONE,    C_NONE,    C_BLUE,    C_BLUE,    C_NONE,
-    C_NONE,    C_NONE,    C_NONE,    C_NONE,
+    C_NONE,    C_BLUE,    C_BLUE,    C_BLUE,    C_NONE,
+    C_NONE,    C_BLUE,    C_BLUE,    C_BLUE,    C_NONE,
+    C_NONE,    C_BLUE,    C_BLUE,    C_BLUE,    C_NONE,
+    C_NONE,    C_BLUE,    C_BLUE,    C_BLUE,    C_NONE,
+    C_NONE,    C_BLUE,    C_BLUE,    C_BLUE,
     C_NONE,    C_NONE,    C_NONE,
-    C_BLUE,    C_PINK,    C_NONE,    C_NONE
+    C_BLUE,    C_BLUE,    C_NONE,    C_NONE
   },
 
   [4] = {
@@ -362,21 +362,21 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
     C_NONE,    C_PINK,    C_NONE,    C_NONE,
 
     C_NONE,    C_NONE,    C_NONE,    C_NONE,    C_NONE,
-    C_NONE,    C_NONE,    C_PINK,    C_PINK,    C_NONE,
-    C_NONE,    C_NONE,    C_PINK,    C_PINK,    C_NONE,
-    C_NONE,    C_NONE,    C_PINK,    C_PINK,    C_NONE,
-    C_NONE,    C_NONE,    C_PINK,    C_PINK,    C_NONE,
-    C_NONE,    C_NONE,    C_NONE,    C_NONE,
+    C_NONE,    C_PINK,    C_PINK,    C_PINK,    C_NONE,
+    C_NONE,    C_PINK,    C_PINK,    C_PINK,    C_NONE,
+    C_NONE,    C_PINK,    C_PINK,    C_PINK,    C_NONE,
+    C_NONE,    C_PINK,    C_PINK,    C_PINK,    C_NONE,
+    C_NONE,    C_PINK,    C_PINK,    C_PINK,
     C_NONE,    C_NONE,    C_NONE,
     C_PINK,    C_PINK,    C_NONE,    C_NONE
   },
 
   [6] = {
     C_NONE,    C_NONE,    C_NONE,    C_NONE,    C_NONE,
-    C_NONE,    C_PINK,    C_PINK,    C_PINK,    C_NONE,
-    C_NONE,    C_PINK,    C_PINK,    C_PINK,    C_NONE,
-    C_NONE,    C_PINK,    C_PINK,    C_PINK,    C_NONE,
-    C_NONE,    C_PINK,    C_PINK,    C_PINK,    C_NONE,
+    C_NONE,    C_NONE,    C_PINK,    C_PINK,    C_NONE,
+    C_NONE,    C_NONE,    C_PINK,    C_PINK,    C_NONE,
+    C_NONE,    C_NONE,    C_PINK,    C_PINK,    C_NONE,
+    C_NONE,    C_NONE,    C_PINK,    C_PINK,    C_NONE,
     C_NONE,    C_NONE,    C_NONE,    C_NONE,
     C_NONE,    C_NONE,    C_NONE,
     C_PINK,    C_PINK,    C_NONE,    C_NONE,
