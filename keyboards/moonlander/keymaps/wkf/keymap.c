@@ -120,19 +120,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                           ____,                 ____,                    ____,               ____,              ____,                 ____,          ____,
 
                           ____,                 ____,                    ____,               ____,              ____,                 ____,          ____,
-                          ____,                 KC_LBRC,                KC_7,               KC_8,              KC_9,                  KC_GRAVE,      ____,
+                          ____,                 KC_LBRC,                 KC_7,               KC_8,              KC_9,                 KC_RBRC,       ____,
 
                           ____,                 ____,                    ____,               ____,              ____,                 ____,          ____,
-                          ____,                 KC_SLASH,                KC_4,               KC_5,              KC_6,                 KC_MINUS,      ____,
+                          ____,                 KC_EQUAL,                KC_4,               KC_5,              KC_6,                 KC_SLASH,      ____,
 
                           ____,                 ____,                    ____,               ____,              ____,                 ____,
-                          KC_BSLASH,            KC_1,                    KC_2,               KC_3,              KC_EQUAL,             ____,
+                          KC_BSLASH,            KC_1,                    KC_2,               KC_3,              KC_GRAVE,             ____,
 
                           ____,                 ____,                    ____,               ____,              ____,                 ____,
                           ____,                 ____,                    ____,               ____,              ____,                 ____,
 
                           ____,                 ____,                    ____,
-                          ____,                 KC_RBRACKET,             KC_0
+                          ____,                 KC_MINUS,                KC_0
                           ),
 
   [2] = LAYOUT_moonlander(
@@ -142,7 +142,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                           ____,                 ____,                    ____,               ____,              ____,                 ____,          ____,
                           ____,                 ____,                    ____,               ____,              ____,                 ____,          ____,
 
-                          ____,                 KC_LEFT,                 KC_DOWN,            KC_UP,             KC_RIGHT,             ____,          ____,
+                          ____,                 KC_LEFT,                 KC_DOWN,            KC_UP,             KC_RIGHT,             KC_CAPS,       ____,
                           ____,                 ____,                    ____,               ____,              ____,                 ____,          ____,
 
                           ____,                 KC_HOME,                 KC_PGDOWN,          KC_PGUP,           KC_END,               ____,
@@ -160,19 +160,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                           ____,                 ____,                    ____,               ____,              ____,                 ____,          ____,
 
                           ____,                 ____,                    ____,               ____,              ____,                 ____,          ____,
-                          ____,                 KC_TILD,                 KC_AMPR,            KC_ASTR,           KC_LPRN,              KC_LCBR,       ____,
+                          ____,                 KC_LCBR,                 KC_AMPR,            KC_ASTR,           KC_LPRN,              KC_RCBR,       ____,
 
                           ____,                 ____,                    ____,               ____,              ____,                 ____,          ____,
-                          ____,                 KC_QUES,                 KC_DLR,             KC_PERC,           KC_CIRC,              KC_UNDS,       ____,
+                          ____,                 KC_PLUS,                 KC_DLR,             KC_PERC,           KC_CIRC,              KC_QUES,       ____,
 
                           ____,                 ____,                    ____,               ____,              ____,                 ____,
-                          KC_PIPE,              KC_EXLM,                 KC_AT,              KC_HASH,           KC_PLUS,              ____,
+                          KC_PIPE,              KC_EXLM,                 KC_AT,              KC_HASH,           KC_TILD,              ____,
 
                           ____,                 ____,                    ____,               ____,              ____,                 ____,
                           ____,                 ____,                    ____,               ____,              ____,                 ____,
 
                           ____,                 ____,                    ____,
-                          ____,                 KC_RCBR,                 KC_RPRN
+                          ____,                 KC_UNDS,                 KC_RPRN
                           ),
 
   [4] = LAYOUT_moonlander(
@@ -297,7 +297,7 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
     C_NONE,    C_NONE,    C_ORANGE,  C_ORANGE,  C_NONE,
     C_NONE,    C_NONE,    C_ORANGE,  C_ORANGE,  C_NONE,
     C_NONE,    C_NONE,    C_ORANGE,  C_ORANGE,  C_NONE,
-    C_NONE,    C_NONE,    C_NONE,    C_NONE,
+    C_NONE,    C_NONE,    C_ORANGE,  C_NONE,
     C_NONE,    C_NONE,    C_NONE,
     C_ORANGE,  C_ORANGE,  C_NONE,    C_NONE,
 
@@ -339,7 +339,7 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
     C_NONE,    C_BLUE,    C_BLUE,    C_BLUE,    C_NONE,
     C_NONE,    C_NONE,    C_NONE,    C_NONE,
     C_NONE,    C_NONE,    C_NONE,
-    C_BLUE,    C_PINK,    C_NONE,    C_NONE,
+    C_BLUE,    C_BLUE,    C_NONE,    C_NONE,
 
     C_NONE,    C_NONE,    C_NONE,    C_NONE,    C_NONE,
     C_NONE,    C_NONE,    C_YELLOW,  C_NONE,    C_NONE,
