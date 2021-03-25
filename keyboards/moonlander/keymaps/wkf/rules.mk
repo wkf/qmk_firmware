@@ -4,7 +4,7 @@
 # COMBO_ENABLE = yes
 CONSOLE_ENABLE = no
 COMMAND_ENABLE = no
-AUTO_SHIFT_ENABLE = yes
+# AUTO_SHIFT_ENABLE = yes
 # WEBUSB_ENABLE = yes
 # ORYX_ENABLE = yes
 SRC = matrix.c

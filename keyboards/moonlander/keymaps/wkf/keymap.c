@@ -1,30 +1,4 @@
 #include QMK_KEYBOARD_H
-#include "version.h"
-/* #include "keymap_german.h" */
-/* #include "keymap_nordic.h" */
-/* #include "keymap_french.h" */
-/* #include "keymap_spanish.h" */
-/* #include "keymap_hungarian.h" */
-/* #include "keymap_swedish.h" */
-/* #include "keymap_br_abnt2.h" */
-/* #include "keymap_canadian_multilingual.h" */
-/* #include "keymap_german_ch.h" */
-/* #include "keymap_jp.h" */
-/* #include "keymap_korean.h" */
-/* #include "keymap_bepo.h" */
-/* #include "keymap_italian.h" */
-/* #include "keymap_slovenian.h" */
-/* #include "keymap_danish.h" */
-/* #include "keymap_norwegian.h" */
-/* #include "keymap_portuguese.h" */
-/* #include "keymap_contributions.h" */
-/* #include "keymap_czech.h" */
-/* #include "keymap_romanian.h" */
-/* #include "keymap_russian.h" */
-/* #include "keymap_uk.h" */
-/* #include "keymap_estonian.h" */
-/* #include "keymap_belgian.h" */
-#include "keymap_us_international.h"
 
 #define KC_MAC_UNDO LGUI(KC_Z)
 #define KC_MAC_CUT LGUI(KC_X)
@@ -47,30 +21,12 @@
 
 enum custom_keycodes {
   RGB_SLD = ML_SAFE_RANGE,
+  KC_DTQS,
+  KC_CMEX,
+  KC_BSLT,
+  KC_FSGT,
+  KC_P1PE
 };
-
-/* enum combos { */
-/*   QJ_ESCAPE, */
-/*   WV_ENTER */
-/* }; */
-
-/* const uint16_t PROGMEM qj_combo[] = {KC_Q, KC_J, COMBO_END}; */
-/* const uint16_t PROGMEM wv_combo[] = {KC_W, KC_V, COMBO_END}; */
-
-/* combo_t key_combos[COMBO_COUNT] = { */
-/*   [QJ_ESCAPE] = COMBO(qj_combo, KC_ESCAPE), */
-/*   [WV_ENTER] = COMBO(wv_combo, KC_ENTER) */
-/* }; */
-
-/* enum dances { */
-/*   TD_Q_ESC, */
-/*   TD_SCOLON_SLASH, */
-/* }; */
-
-/* qk_tap_dance_action_t tap_dance_actions[] = { */
-/*   [TD_Q_ESC] = ACTION_TAP_DANCE_DOUBLE(KC_Q, KC_ESCAPE), */
-/*   [TD_SCOLON_SLASH] = ACTION_TAP_DANCE_DOUBLE(KC_SCOLON, KC_SLASH) */
-/* }; */
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
@@ -78,14 +34,6 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
           return TAPPING_TERM - 30;
         case RSFT_T(KC_H):
           return TAPPING_TERM - 30;
-        /* case LT(1,KC_BSPACE): */
-        /*   return TAPPING_TERM + 30; */
-        /* case LT(2,KC_SPACE): */
-        /*   return TAPPING_TERM + 30; */
-        /* case LT(3,KC_ESCAPE): */
-        /*   return TAPPING_TERM + 30; */
-        /* case LT(4,KC_ENTER): */
-        /*   return TAPPING_TERM + 30; */
         default:
             return TAPPING_TERM;
     }
@@ -99,7 +47,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                           ____,                 ____,                    ____,               ____,              ____,                 ____,          ____,
                           ____,                 ____,                    ____,               ____,              ____,                 ____,          ____,
 
-                          ____,                 KC_QUOTE,                KC_COMMA,           KC_DOT,            KC_P,                 KC_Y,          ____,
+                          ____,                 KC_QUOTE,                KC_CMEX,            KC_DTQS,           KC_P,                 KC_Y,          ____,
                           ____,                 KC_F,                    KC_G,               KC_C,              KC_R,                 KC_L,          ____,
 
                           ____,                 LALT_T(KC_A),            LGUI_T(KC_O),       LCTL_T(KC_E),      LSFT_T(KC_U),         KC_I,          ____,
@@ -123,10 +71,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                           ____,                 KC_LBRC,                 KC_7,               KC_8,              KC_9,                 KC_RBRC,       ____,
 
                           ____,                 ____,                    ____,               ____,              ____,                 ____,          ____,
-                          ____,                 KC_EQUAL,                KC_4,               KC_5,              KC_6,                 KC_SLASH,      ____,
+                          ____,                 KC_BSLT,                 KC_4,               KC_5,              KC_6,                 KC_FSGT,       ____,
 
                           ____,                 ____,                    ____,               ____,              ____,                 ____,
-                          KC_BSLASH,            KC_1,                    KC_2,               KC_3,              KC_GRAVE,             ____,
+                          KC_EQUAL,             KC_P1PE,                 KC_2,               KC_3,              KC_GRAVE,             ____,
 
                           ____,                 ____,                    ____,               ____,              ____,                 ____,
                           ____,                 ____,                    ____,               ____,              ____,                 ____,
@@ -163,10 +111,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                           ____,                 KC_LCBR,                 KC_AMPR,            KC_ASTR,           KC_LPRN,              KC_RCBR,       ____,
 
                           ____,                 ____,                    ____,               ____,              ____,                 ____,          ____,
-                          ____,                 KC_PLUS,                 KC_DLR,             KC_PERC,           KC_CIRC,              KC_QUES,       ____,
+                          ____,                 KC_LT,                   KC_DLR,             KC_PERC,           KC_CIRC,              KC_GT,         ____,
 
                           ____,                 ____,                    ____,               ____,              ____,                 ____,
-                          KC_PIPE,              KC_EXLM,                 KC_AT,              KC_HASH,           KC_TILD,              ____,
+                          KC_PLUS,              KC_PIPE,                 KC_AT,              KC_HASH,           KC_PLUS,              ____,
 
                           ____,                 ____,                    ____,               ____,              ____,                 ____,
                           ____,                 ____,                    ____,               ____,              ____,                 ____,
@@ -201,10 +149,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                           ____,                 ____,                    ____,               ____,              ____,                 ____,          ____,
 
                           ____,                 ____,                    ____,               ____,              ____,                 ____,          ____,
-                          ____,                 KC_F5,                   KC_F6,              KC_F7,             KC_F12,               ____,          ____,
+                          ____,                 ____,                    KC_F5,              KC_F6,             KC_F7,                KC_F12,        ____,
 
                           ____,                 ____,                    ____,               ____,              ____,                 ____,          ____,
-                          ____,                 KC_F4,                   KC_F5,              KC_F6,             KC_F11,               ____,          ____,
+                          ____,                 ____,                    KC_F4,              KC_F5,             KC_F6,                KC_F11,        ____,
 
                           ____,                 ____,                    ____,               ____,              ____,                 ____,
                           ____,                 KC_F1,                   KC_F2,              KC_F3,             KC_F10,               ____,
@@ -366,9 +314,9 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
     C_NONE,    C_PINK,    C_PINK,    C_PINK,    C_NONE,
     C_NONE,    C_PINK,    C_PINK,    C_PINK,    C_NONE,
     C_NONE,    C_PINK,    C_PINK,    C_PINK,    C_NONE,
-    C_NONE,    C_PINK,    C_PINK,    C_PINK,
+    C_NONE,    C_NONE,    C_NONE,    C_NONE,
     C_NONE,    C_NONE,    C_NONE,
-    C_PINK,    C_PINK,    C_NONE,    C_NONE
+    C_NONE,    C_PINK,    C_NONE,    C_NONE
   },
 
   [6] = {
@@ -446,6 +394,66 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case RGB_SLD:
       if (record->event.pressed) {
         rgblight_mode(1);
+      }
+      return false;
+    case KC_DTQS:
+      if (record->event.pressed){
+        if (get_mods() & MOD_BIT(KC_LSHIFT) || get_mods() & MOD_BIT(KC_RSHIFT)){
+          register_code(KC_SLSH);
+        } else {
+          register_code(KC_DOT);
+        }
+      } else {
+        unregister_code(KC_SLSH);
+        unregister_code(KC_DOT);
+      }
+      return false;
+    case KC_CMEX:
+      if (record->event.pressed){
+        if (get_mods() & MOD_BIT(KC_LSHIFT) || get_mods() & MOD_BIT(KC_RSHIFT)){
+          register_code(KC_1);
+        } else {
+          register_code(KC_COMM);
+        }
+      } else {
+        unregister_code(KC_1);
+        unregister_code(KC_COMM);
+      }
+      return false;
+    case KC_BSLT:
+      if (record->event.pressed){
+        if (get_mods() & MOD_BIT(KC_LSHIFT) || get_mods() & MOD_BIT(KC_RSHIFT)){
+          register_code(KC_COMMA);
+        } else {
+          register_code(KC_BSLASH);
+        }
+      } else {
+        unregister_code(KC_COMMA);
+        unregister_code(KC_BSLASH);
+      }
+      return false;
+    case KC_FSGT:
+      if (record->event.pressed){
+        if (get_mods() & MOD_BIT(KC_LSHIFT) || get_mods() & MOD_BIT(KC_RSHIFT)){
+          register_code(KC_DOT);
+        } else {
+          register_code(KC_SLASH);
+        }
+      } else {
+        unregister_code(KC_DOT);
+        unregister_code(KC_SLASH);
+      }
+      return false;
+    case KC_P1PE:
+      if (record->event.pressed){
+        if (get_mods() & MOD_BIT(KC_LSHIFT) || get_mods() & MOD_BIT(KC_RSHIFT)){
+          register_code(KC_BSLASH);
+        } else {
+          register_code(KC_1);
+        }
+      } else {
+        unregister_code(KC_BSLASH);
+        unregister_code(KC_1);
       }
       return false;
   }
