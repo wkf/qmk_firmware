@@ -54,54 +54,60 @@ enum custom_keycodes {
 #define LT_DEL LT(5,KC_DEL)
 #define LT_TAB LT(6,KC_TAB)
 
+
+/* [\- \. \u \m \q \k \f \c \g \j */
+/*  \o \a \i \n \w \p \h \s \t \r */
+/*  \' \, \y \l \x \v \d \b \z \; */
+/*  \e \space] */
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_ALPHAS] = LAYOUT_split_3x5_3(
   KC_QUOT, CS_CMEX, CS_DTQS, KC_P,    KC_Y,    KC_F,   KC_G,   KC_C,   KC_R, KC_L,
   MT_A,    MT_O,    MT_E,    MT_U,    KC_I,    KC_D,   MT_H,   MT_T,   MT_N, MT_S,
   KC_SCLN, KC_Q,    KC_J,    KC_K,    KC_X,    KC_B,   KC_M,   KC_W,   KC_V, KC_Z,
-                    LT_DEL,  LT_BSPC, LT_ESC,  LT_ENT, LT_SPC, LT_TAB
+                    LT_DEL,  LT_ESC,  LT_BSPC, LT_SPC, LT_ENT, LT_TAB
 ),
 
 [_NUMBERS] = LAYOUT_split_3x5_3(
   ____, ____, ____, ____, ____, KC_LBRC, KC_7,    KC_8, KC_9, KC_RBRC,
   ____, ____, ____, ____, ____, CS_BSLT, KC_4,    KC_5, KC_6, CS_FSGT,
   ____, ____, ____, ____, ____, KC_EQL,  CS_P1PE, KC_2, KC_3, KC_GRV,
-              ____, ____, ____, KC_MINS, KC_0,    ____
+              ____, ____, ____, KC_0,    KC_MINS, ____
 ),
 
 [_NAVIGATION] = LAYOUT_split_3x5_3(
-  ____,    ____,    ____,    ____,    ____,    ____, ____, ____, ____, ____,
-  KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_CAPS, ____, ____, ____, ____, ____,
-  KC_HOME, KC_PGDN, KC_PGUP, KC_END,  ____,    ____, ____, ____, ____, ____,
-                    ____,    ____,    ____,    ____, ____, ____
+  ____,    ____,    ____,    ____,    ____,   ____, ____, ____, ____, ____,
+  KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, ____,   ____, ____, ____, ____, ____,
+  KC_HOME, KC_PGDN, KC_PGUP, KC_END,  ____,   ____, ____, ____, ____, ____,
+                    ____,    KC_CAPS, KC_TAB, ____, ____, ____
 ),
 
 [_SYMBOLS] = LAYOUT_split_3x5_3(
   ____, ____, ____, ____, ____, KC_LCBR, KC_AMPR, KC_ASTR, KC_LPRN, KC_RCBR,
   ____, ____, ____, ____, ____, KC_LT,   KC_DLR,  KC_PERC, KC_CIRC, KC_GT,
   ____, ____, ____, ____, ____, KC_PLUS, KC_PIPE, KC_AT,   KC_HASH, KC_PLUS,
-              ____, ____, ____, KC_UNDS, KC_RPRN, ____
+              ____, ____, ____, KC_RPRN, KC_UNDS, ____
 ),
 
 [_MEDIA] = LAYOUT_split_3x5_3(
   ____,    ____,    ____,    ____,    ____, ____, ____, ____, ____, ____,
   KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT, ____, ____, ____, ____, ____, ____,
   ____,    ____,    ____,    ____,    ____, ____, ____, ____, ____, ____,
-                    KC_MPLY, KC_MUTE, ____, ____, ____, ____
+                    ____,    KC_MUTE, KC_MPLY, ____, ____, ____
 ),
 
 [_FUNCTION] = LAYOUT_split_3x5_3(
   ____, ____, ____, ____, ____, ____, KC_F5, KC_F6, KC_F7, KC_F12,
   ____, ____, ____, ____, ____, ____, KC_F4, KC_F5, KC_F6, KC_F11,
   ____, ____, ____, ____, ____, ____, KC_F1, KC_F2, KC_F3, KC_F10,
-              ____, ____, ____, ____, ____, RESET
+              ____, ____, ____, ____, ____,  ____
 ),
 
 [_MOUSE] = LAYOUT_split_3x5_3(
   ____,    ____,    ____,    ____,    ____,    ____, ____, ____, ____, ____,
   KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, ____,    ____, ____, ____, ____, ____,
   ____,    KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, ____, ____, ____, ____, ____,
-                    KC_BTN1, KC_BTN2, ____,    ____, ____, ____
+                    ____,    KC_BTN2, KC_BTN1, ____, ____, ____
 )
 };
 
@@ -190,44 +196,44 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 }
 
 static void render_logo(void) {
-  oled_write_P(PSTR("\n         <3"), false);
+  oled_write_P(PSTR("\n         λ"), false);
 }
 
 static void render_status(void) {
-  oled_write_P(PSTR("A N n S M F m\n"), false);
+  oled_write_ln_P(PSTR("A N n S M F m"), false);
 
    switch (get_highest_layer(layer_state)) {
     case _ALPHAS:
-      oled_write_P(PSTR("^\n"), false);
-      oled_write_P(PSTR("Layer: Alphas\n"), false);
+      oled_write_ln_P(PSTR("^"), false);
+      oled_write_ln_P(PSTR("Layer: Alphas"), false);
       break;
     case _NUMBERS:
-      oled_write_P(PSTR("  ^\n"), false);
-      oled_write_P(PSTR("Layer: Numbers\n"), false);
+      oled_write_ln_P(PSTR("  ^"), false);
+      oled_write_ln_P(PSTR("Layer: Numbers"), false);
       break;
     case _NAVIGATION:
-      oled_write_P(PSTR("    ^\n"), false);
-      oled_write_P(PSTR("Layer: Navigation\n"), false);
+      oled_write_ln_P(PSTR("    ^"), false);
+      oled_write_ln_P(PSTR("Layer: Navigation"), false);
       break;
     case _SYMBOLS:
-      oled_write_P(PSTR("      ^\n"), false);
-      oled_write_P(PSTR("Layer: Symbols\n"), false);
+      oled_write_ln_P(PSTR("      ^"), false);
+      oled_write_ln_P(PSTR("Layer: Symbols"), false);
       break;
     case _MEDIA:
-      oled_write_P(PSTR("        ^\n"), false);
-      oled_write_P(PSTR("Layer: Media\n"), false);
+      oled_write_ln_P(PSTR("        ^"), false);
+      oled_write_ln_P(PSTR("Layer: Media"), false);
       break;
     case _FUNCTION:
-      oled_write_P(PSTR("          ^\n"), false);
-      oled_write_P(PSTR("Layer: Function\n"), false);
+      oled_write_ln_P(PSTR("          ^"), false);
+      oled_write_ln_P(PSTR("Layer: Function"), false);
       break;
     case _MOUSE:
-      oled_write_P(PSTR("            ^\n"), false);
-      oled_write_P(PSTR("Layer: Mouse\n"), false);
+      oled_write_ln_P(PSTR("            ^"), false);
+      oled_write_ln_P(PSTR("Layer: Mouse"), false);
       break;
     default:
-      oled_write_P(PSTR("\n"), false);
-      oled_write_P(PSTR("Layer: Other\n"), false);
+      oled_write_ln_P(PSTR(""), false);
+      oled_write_ln_P(PSTR("Layer: Other"), false);
   }
 }
 
