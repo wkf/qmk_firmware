@@ -19,13 +19,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "split_util.h"
 
 enum layers {
-    _ALPHAS,
-    _NUMBERS,
-    _NAVIGATION,
-    _SYMBOLS,
+    _BASE,
+    _LOWER,
+    _RAISE,
     _MEDIA,
     _FUNCTION,
-    _MOUSE,
 };
 
 enum custom_keycodes {
@@ -38,62 +36,48 @@ enum custom_keycodes {
 
 #define ____ KC_TRANSPARENT
 
-#define MT_A LALT_T(KC_A)
-#define MT_O LGUI_T(KC_O)
-#define MT_E LCTL_T(KC_E)
-#define MT_U LSFT_T(KC_U)
+#define MT_O LALT_T(KC_O)
+#define MT_A LGUI_T(KC_A)
+#define MT_I LCTL_T(KC_I)
+#define MT_N LSFT_T(KC_N)
 #define MT_H LSFT_T(KC_H)
-#define MT_T LCTL_T(KC_T)
-#define MT_N LGUI_T(KC_N)
-#define MT_S LALT_T(KC_S)
+#define MT_S LCTL_T(KC_S)
+#define MT_T LGUI_T(KC_T)
+#define MT_R LALT_T(KC_R)
 
-#define LT_BSPC LT(1,KC_BSPC)
-#define LT_SPC LT(2,KC_SPC)
-#define LT_ESC LT(3,KC_ESC)
-#define LT_ENT LT(4,KC_ENT)
-#define LT_DEL LT(5,KC_DEL)
-#define LT_TAB LT(6,KC_TAB)
+#define LT_E LT(_LOWER,KC_E)
+#define LT_SPC LT(_RAISE,KC_SPC)
 
-
-/* [\- \. \u \m \q \k \f \c \g \j */
-/*  \o \a \i \n \w \p \h \s \t \r */
-/*  \' \, \y \l \x \v \d \b \z \; */
-/*  \e \space] */
+#define LT_0 LT(_MEDIA,KC_0)
+#define LT_BSPC LT(_FUNCTION,KC_BSPC)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-[_ALPHAS] = LAYOUT_split_3x5_3(
-  KC_QUOT, CS_CMEX, CS_DTQS, KC_P,    KC_Y,    KC_F,   KC_G,   KC_C,   KC_R, KC_L,
-  MT_A,    MT_O,    MT_E,    MT_U,    KC_I,    KC_D,   MT_H,   MT_T,   MT_N, MT_S,
-  KC_SCLN, KC_Q,    KC_J,    KC_K,    KC_X,    KC_B,   KC_M,   KC_W,   KC_V, KC_Z,
-                    LT_DEL,  LT_ESC,  LT_BSPC, LT_SPC, LT_ENT, LT_TAB
+[_BASE] = LAYOUT_split_3x5_3(
+  KC_MINS, CS_DTQS, KC_U,    KC_M,    KC_Q,    KC_K,   KC_F,   KC_C,   KC_G, KC_J,
+  MT_O,    MT_A,    MT_I,    MT_N,    KC_W,    KC_P,   MT_H,   MT_S,   MT_T, MT_R,
+  KC_QUOT, CS_CMEX, KC_Y,    KC_L,    KC_X,    KC_V,   KC_D,   KC_B,   KC_Z, KC_SCLN,
+                    ____,    ____,    LT_E,    LT_SPC, ____, ____
 ),
 
-[_NUMBERS] = LAYOUT_split_3x5_3(
+[_LOWER] = LAYOUT_split_3x5_3(
   ____, ____, ____, ____, ____, KC_LBRC, KC_7,    KC_8, KC_9, KC_RBRC,
   ____, ____, ____, ____, ____, CS_BSLT, KC_4,    KC_5, KC_6, CS_FSGT,
   ____, ____, ____, ____, ____, KC_EQL,  CS_P1PE, KC_2, KC_3, KC_GRV,
-              ____, ____, ____, KC_0,    KC_MINS, ____
+              ____, ____, ____, LT_0,    ____, ____
 ),
 
-[_NAVIGATION] = LAYOUT_split_3x5_3(
-  ____,    ____,    ____,    ____,    ____,   ____, ____, ____, ____, ____,
-  KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, ____,   ____, ____, ____, ____, ____,
-  KC_HOME, KC_PGDN, KC_PGUP, KC_END,  ____,   ____, ____, ____, ____, ____,
-                    ____,    KC_CAPS, KC_TAB, ____, ____, ____
-),
-
-[_SYMBOLS] = LAYOUT_split_3x5_3(
-  ____, ____, ____, ____, ____, KC_LCBR, KC_AMPR, KC_ASTR, KC_LPRN, KC_RCBR,
-  ____, ____, ____, ____, ____, KC_LT,   KC_DLR,  KC_PERC, KC_CIRC, KC_GT,
-  ____, ____, ____, ____, ____, KC_PLUS, KC_PIPE, KC_AT,   KC_HASH, KC_PLUS,
-              ____, ____, ____, KC_RPRN, KC_UNDS, ____
+[_RAISE] = LAYOUT_split_3x5_3(
+  KC_HOME, KC_PGDN, KC_PGUP, KC_END,  ____,    ____, ____, ____, ____, ____,
+  KC_DEL,  KC_ESC,  KC_ENT,  KC_TAB,  KC_CAPS, ____, ____, ____, ____, ____,
+  KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, ____,    ____, ____, ____, ____, ____,
+                    ____,    ____,    LT_BSPC, ____, ____, ____
 ),
 
 [_MEDIA] = LAYOUT_split_3x5_3(
-  ____,    ____,    ____,    ____,    ____, ____, ____, ____, ____, ____,
-  KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT, ____, ____, ____, ____, ____, ____,
-  ____,    ____,    ____,    ____,    ____, ____, ____, ____, ____, ____,
-                    ____,    KC_MUTE, KC_MPLY, ____, ____, ____
+  ____,    ____,    ____,    ____,    ____,    ____, ____, ____, ____, ____,
+  KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT, KC_MUTE, ____, ____, ____, ____, ____,
+  ____,    ____,    ____,    ____,    ____,    ____, ____, ____, ____, ____,
+                    ____,    ____,    KC_MPLY, ____, ____, ____
 ),
 
 [_FUNCTION] = LAYOUT_split_3x5_3(
@@ -101,14 +85,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ____, ____, ____, ____, ____, ____, KC_F4, KC_F5, KC_F6, KC_F11,
   ____, ____, ____, ____, ____, ____, KC_F1, KC_F2, KC_F3, KC_F10,
               ____, ____, ____, ____, ____,  ____
-),
-
-[_MOUSE] = LAYOUT_split_3x5_3(
-  ____,    ____,    ____,    ____,    ____,    ____, ____, ____, ____, ____,
-  KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, ____,    ____, ____, ____, ____, ____,
-  ____,    KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, ____, ____, ____, ____, ____,
-                    ____,    KC_BTN2, KC_BTN1, ____, ____, ____
 )
+
 };
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
@@ -200,36 +178,28 @@ static void render_logo(void) {
 }
 
 static void render_status(void) {
-  oled_write_ln_P(PSTR("A N n S M F m"), false);
+  oled_write_ln_P(PSTR("B L R M F"), false);
 
    switch (get_highest_layer(layer_state)) {
-    case _ALPHAS:
+    case _BASE:
       oled_write_ln_P(PSTR("^"), false);
-      oled_write_ln_P(PSTR("Layer: Alphas"), false);
+      oled_write_ln_P(PSTR("Layer: Base"), false);
       break;
-    case _NUMBERS:
+    case _LOWER:
       oled_write_ln_P(PSTR("  ^"), false);
-      oled_write_ln_P(PSTR("Layer: Numbers"), false);
+      oled_write_ln_P(PSTR("Layer: Lower"), false);
       break;
-    case _NAVIGATION:
+    case _RAISE:
       oled_write_ln_P(PSTR("    ^"), false);
-      oled_write_ln_P(PSTR("Layer: Navigation"), false);
-      break;
-    case _SYMBOLS:
-      oled_write_ln_P(PSTR("      ^"), false);
-      oled_write_ln_P(PSTR("Layer: Symbols"), false);
+      oled_write_ln_P(PSTR("Layer: Raise"), false);
       break;
     case _MEDIA:
-      oled_write_ln_P(PSTR("        ^"), false);
+      oled_write_ln_P(PSTR("      ^"), false);
       oled_write_ln_P(PSTR("Layer: Media"), false);
       break;
     case _FUNCTION:
-      oled_write_ln_P(PSTR("          ^"), false);
+      oled_write_ln_P(PSTR("        ^"), false);
       oled_write_ln_P(PSTR("Layer: Function"), false);
-      break;
-    case _MOUSE:
-      oled_write_ln_P(PSTR("            ^"), false);
-      oled_write_ln_P(PSTR("Layer: Mouse"), false);
       break;
     default:
       oled_write_ln_P(PSTR(""), false);
