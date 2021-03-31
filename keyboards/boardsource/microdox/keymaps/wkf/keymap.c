@@ -27,11 +27,16 @@ enum layers {
 };
 
 enum custom_keycodes {
-  CS_DTQS = SAFE_RANGE,
-  CS_CMEX,
+  CS_DTEX = SAFE_RANGE,
+  CS_CMQS,
   CS_BSLT,
   CS_FSGT,
-  CS_P1PE
+  CS_1AMP,
+  CS_2PPE,
+  CS_3CIR,
+  CS_4AT,
+  CS_6PND,
+  CS_7DLR,
 };
 
 #define ____ KC_TRANSPARENT
@@ -41,28 +46,28 @@ enum custom_keycodes {
 #define MT_I LCTL_T(KC_I)
 #define MT_N LSFT_T(KC_N)
 #define MT_H LSFT_T(KC_H)
-#define MT_S LCTL_T(KC_S)
-#define MT_T LGUI_T(KC_T)
+#define MT_T LCTL_T(KC_T)
+#define MT_S LGUI_T(KC_S)
 #define MT_R LALT_T(KC_R)
 
-#define LT_E LT(_LOWER,KC_E)
-#define LT_SPC LT(_RAISE,KC_SPC)
+#define LT_E LT(_RAISE,KC_E)
+#define LT_SPC LT(_LOWER,KC_SPC)
 
 #define LT_0 LT(_MEDIA,KC_0)
 #define LT_BSPC LT(_FUNCTION,KC_BSPC)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_BASE] = LAYOUT_split_3x5_3(
-  KC_MINS, CS_DTQS, KC_U,    KC_M,    KC_Q,    KC_K,   KC_F,   KC_C,   KC_G, KC_J,
-  MT_O,    MT_A,    MT_I,    MT_N,    KC_W,    KC_P,   MT_H,   MT_S,   MT_T, MT_R,
-  KC_QUOT, CS_CMEX, KC_Y,    KC_L,    KC_X,    KC_V,   KC_D,   KC_B,   KC_Z, KC_SCLN,
-                    ____,    ____,    LT_E,    LT_SPC, ____, ____
+  KC_QUOT, CS_CMQS, KC_U,    KC_M,    KC_Q,    KC_K,   KC_F,   KC_G,   KC_C, KC_J,
+  MT_O,    MT_A,    MT_I,    MT_N,    KC_W,    KC_P,   MT_H,   MT_T,   MT_S, MT_R,
+  KC_SCLN, CS_DTEX, KC_Y,    KC_L,    KC_X,    KC_Z,   KC_D,   KC_B,   KC_V, KC_MINS,
+                    ____,    ____,    LT_SPC,  LT_E, ____, ____
 ),
 
 [_LOWER] = LAYOUT_split_3x5_3(
-  ____, ____, ____, ____, ____, KC_LBRC, KC_7,    KC_8, KC_9, KC_RBRC,
-  ____, ____, ____, ____, ____, CS_BSLT, KC_4,    KC_5, KC_6, CS_FSGT,
-  ____, ____, ____, ____, ____, KC_EQL,  CS_P1PE, KC_2, KC_3, KC_GRV,
+  ____, ____, ____, ____, ____, KC_LBRC, CS_7DLR, KC_8,    KC_9,    KC_RBRC,
+  ____, ____, ____, ____, ____, CS_BSLT, CS_4AT,  KC_5,    CS_6PND, CS_FSGT,
+  ____, ____, ____, ____, ____, KC_GRV,  CS_1AMP, CS_2PPE, CS_3CIR, KC_EQL,
               ____, ____, ____, LT_0,    ____, ____
 ),
 
@@ -102,27 +107,27 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    case CS_DTQS:
-      if (record->event.pressed){
-        if (get_mods() & MOD_BIT(KC_LSHIFT) || get_mods() & MOD_BIT(KC_RSHIFT)){
-          register_code(KC_SLSH);
-        } else {
-          register_code(KC_DOT);
-        }
-      } else {
-        unregister_code(KC_SLSH);
-        unregister_code(KC_DOT);
-      }
-      return false;
-    case CS_CMEX:
+    case CS_DTEX:
       if (record->event.pressed){
         if (get_mods() & MOD_BIT(KC_LSHIFT) || get_mods() & MOD_BIT(KC_RSHIFT)){
           register_code(KC_1);
         } else {
-          register_code(KC_COMM);
+          register_code(KC_DOT);
         }
       } else {
         unregister_code(KC_1);
+        unregister_code(KC_DOT);
+      }
+      return false;
+    case CS_CMQS:
+      if (record->event.pressed){
+        if (get_mods() & MOD_BIT(KC_LSHIFT) || get_mods() & MOD_BIT(KC_RSHIFT)){
+          register_code(KC_SLSH);
+        } else {
+          register_code(KC_COMM);
+        }
+      } else {
+        unregister_code(KC_SLSH);
         unregister_code(KC_COMM);
       }
       return false;
@@ -150,16 +155,76 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         unregister_code(KC_SLASH);
       }
       return false;
-    case CS_P1PE:
+    case CS_1AMP:
       if (record->event.pressed){
         if (get_mods() & MOD_BIT(KC_LSHIFT) || get_mods() & MOD_BIT(KC_RSHIFT)){
-          register_code(KC_BSLASH);
+          register_code(KC_7);
         } else {
           register_code(KC_1);
         }
       } else {
-        unregister_code(KC_BSLASH);
+        unregister_code(KC_7);
         unregister_code(KC_1);
+      }
+      return false;
+    case CS_2PPE:
+      if (record->event.pressed){
+        if (get_mods() & MOD_BIT(KC_LSHIFT) || get_mods() & MOD_BIT(KC_RSHIFT)){
+          register_code(KC_BSLASH);
+        } else {
+          register_code(KC_2);
+        }
+      } else {
+        unregister_code(KC_BSLASH);
+        unregister_code(KC_2);
+      }
+      return false;
+    case CS_3CIR:
+      if (record->event.pressed){
+        if (get_mods() & MOD_BIT(KC_LSHIFT) || get_mods() & MOD_BIT(KC_RSHIFT)){
+          register_code(KC_6);
+        } else {
+          register_code(KC_3);
+        }
+      } else {
+        unregister_code(KC_6);
+        unregister_code(KC_3);
+      }
+      return false;
+    case CS_4AT:
+      if (record->event.pressed){
+        if (get_mods() & MOD_BIT(KC_LSHIFT) || get_mods() & MOD_BIT(KC_RSHIFT)){
+          register_code(KC_2);
+        } else {
+          register_code(KC_4);
+        }
+      } else {
+        unregister_code(KC_2);
+        unregister_code(KC_4);
+      }
+      return false;
+    case CS_6PND:
+      if (record->event.pressed){
+        if (get_mods() & MOD_BIT(KC_LSHIFT) || get_mods() & MOD_BIT(KC_RSHIFT)){
+          register_code(KC_3);
+        } else {
+          register_code(KC_6);
+        }
+      } else {
+        unregister_code(KC_3);
+        unregister_code(KC_6);
+      }
+      return false;
+    case CS_7DLR:
+      if (record->event.pressed){
+        if (get_mods() & MOD_BIT(KC_LSHIFT) || get_mods() & MOD_BIT(KC_RSHIFT)){
+          register_code(KC_4);
+        } else {
+          register_code(KC_7);
+        }
+      } else {
+        unregister_code(KC_4);
+        unregister_code(KC_7);
       }
       return false;
   }
