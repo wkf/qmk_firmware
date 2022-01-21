@@ -19,12 +19,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "split_util.h"
 
 enum layers {
-    _BASE,
-    _LOWER,
-    _SLOWER,
-    _RAISE,
-    _MEDIA,
-    _FUNCTION,
+    _0,
+    _1,
+    _2,
+    _3,
+    _4,
+    _5,
 };
 
 enum custom_keycodes {
@@ -44,272 +44,155 @@ enum custom_keycodes {
   CS_7,
   CS_8,
   CS_9,
+  CS_0,
 };
 
 #define ____ KC_TRANSPARENT
 
-#define U_RDO SCMD(KC_Z)
-#define U_PST LCMD(KC_V)
-#define U_CPY LCMD(KC_C)
-#define U_CUT LCMD(KC_X)
-#define U_UND LCMD(KC_Z)
+#define SFT(KC) LSFT_T(KC)
+#define CMD(KC) LGUI_T(KC)
+#define ALT(KC) LALT_T(KC)
+#define CTL(KC) LCTL_T(KC)
 
-#define MT_O LALT_T(KC_O)
-#define MT_A LGUI_T(KC_A)
-#define MT_I LCTL_T(KC_I)
-#define MT_N LSFT_T(KC_N)
-#define MT_H LSFT_T(KC_H)
-#define MT_T LCTL_T(KC_T)
-#define MT_S LGUI_T(KC_S)
-#define MT_R LALT_T(KC_R)
-
-#define LT_E LT(_LOWER,KC_E)
-#define LT_L LT(_SLOWER,KC_L)
-#define LT_D LT(_MEDIA,KC_D)
-#define LT_SPC LT(_RAISE,KC_SPC)
-
-#define MO_FUN MO(_FUNCTION)
+#define L1(KC) LT(_1, KC)
+#define L2(KC) LT(_2, KC)
+#define L3(KC) LT(_3, KC)
+#define L4(KC) LT(_4, KC)
+#define L5(KC) LT(_5, KC)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-[_BASE] = LAYOUT_split_3x5_3(
-  KC_J,  KC_C, KC_G, KC_F, KC_K,   KC_Z, KC_M, KC_U,  CS_QU, KC_Q,
-  MT_R,  MT_S, MT_T, MT_H, KC_Y,   KC_W, MT_N, MT_I,  MT_A,  MT_O,
-  CS_SC, KC_B, KC_P, LT_D, KC_V,   KC_X, LT_L, CS_CM, CS_DT, KC_MINS,
-               ____, ____, LT_SPC, LT_E, ____, ____
-),
-/* [_BASE] = LAYOUT_split_3x5_3( */
-/*   KC_Z,    KC_C, KC_W, KC_K, KC_J,    KC_MINS, KC_M, KC_U,  CS_QU, KC_Q, */
-/*   MT_D,    MT_S, MT_T, MT_H, KC_Y,    KC_F,    MT_N, MT_I,  MT_A,  MT_O, */
-/*   KC_B,    KC_G, KC_P, LT_R, KC_V,    KC_X,    LT_L, CS_CM, CS_DT, CS_SC, */
-/*                  ____, ____, LT_SPC,  LT_E,    ____, ____ */
-/* ), */
-/* [_BASE] = LAYOUT_split_3x5_3( */
-/*   KC_Z,    KC_C, KC_W, KC_B, KC_J,  KC_MINS, KC_M, KC_U, CS_QU, KC_Q, */
-/*   MT_D,    MT_S, MT_T, MT_H, KC_K,  KC_V,    MT_N, MT_I, MT_A,  MT_O, */
-/*   KC_F,    KC_G, KC_P, LT_R, CS_SC, KC_X,    LT_L, KC_Y, CS_CM, CS_DT, */
-/*                  ____, ____, LT_SPC,  LT_E,  ____, ____ */
-/* ), */
-/* [_BASE] = LAYOUT_split_3x5_3( */
-/*   KC_Z,    KC_C, KC_W, KC_M, KC_J,  KC_X,    KC_B, KC_U, CS_CM, KC_Q, */
-/*   MT_D,    MT_S, MT_T, MT_H, KC_K,  KC_V,    MT_N, MT_I, MT_A,  MT_O, */
-/*   KC_F,    KC_G, KC_P, LT_L, CS_SC, KC_MINS, LT_R, KC_Y, CS_DT, CS_QU, */
-/*                  ____, ____, LT_E,  LT_SPC,  ____, ____ */
-/* ), */
 
-[_LOWER] = LAYOUT_split_3x5_3(
-  CS_BS,   CS_4,    CS_5,    CS_6,    KC_GRV,  ____, ____, ____, ____, ____,
-  CS_FS,   CS_1,    CS_2,    CS_3,    CS_EQ,   ____, ____, ____, ____, ____,
-  KC_LBRC, CS_7,    CS_8,    CS_9,    KC_RBRC, ____, ____, ____, ____, ____,
-                    ____,    ____,    KC_0,    ____, ____, ____
-),
+  [_0] = LAYOUT_split_3x5_3(
+            KC_J,         KC_C,         KC_Y,          KC_F,        KC_K,        KC_Z,         KC_M,      KC_U,         CS_QU,       KC_Q,
+       CTL(KC_R),    ALT(KC_S),    CMD(KC_T),     SFT(KC_H),        KC_P,        KC_W,    SFT(KC_N), CMD(KC_I),     ALT(KC_A),  CTL(KC_O),
+           CS_SC,         KC_V,         KC_G,      L3(KC_D),        KC_B,        KC_X,     L4(KC_L),     CS_CM,         CS_DT,    KC_MINS,
+                                        ____,          ____,  L1(KC_SPC),    L2(KC_E),         ____,      ____
+  ),
 
-[_SLOWER] = LAYOUT_split_3x5_3(
-  KC_PLUS, KC_CIRC, KC_PERC, KC_DLR,  KC_TILD, ____, ____, ____, ____, ____,
-  KC_LT,   KC_PIPE, KC_AT,   KC_HASH, KC_GT,   ____, ____, ____, ____, ____,
-  KC_LCBR, KC_AMPR, KC_ASTR, KC_LPRN, KC_RCBR, ____, ____, ____, ____, ____,
-                    ____,    ____,    KC_RPRN, MO_FUN,    ____, ____
-),
+  [_1] = LAYOUT_split_3x5_3(
+          KC_DEL,       KC_ESC,       KC_ENT,        KC_TAB,        ____,      KC_GRV,         CS_4,       CS_5,         CS_6,      CS_BS,
+    CTL(KC_LEFT), ALT(KC_DOWN),   CMD(KC_UP), SFT(KC_RIGHT),        ____,       CS_EQ,         CS_1,       CS_2,         CS_3,      CS_FS,
+         KC_HOME,      KC_PGDN,      KC_PGUP,        KC_END,        ____,     KC_LBRC,         CS_7,       CS_8,         CS_9,    KC_RBRC,
+                                        ____,          ____,     KC_BSPC,        CS_0,         ____,       ____
+  ),
 
-[_RAISE] = LAYOUT_split_3x5_3(
-  ____, ____, ____, ____, ____, ____,    KC_TAB,  KC_ENT,  KC_ESC,  KC_DEL,
-  ____, ____, ____, ____, ____, KC_CAPS, KC_LEFT, KC_UP,   KC_DOWN, KC_RGHT,
-  ____, ____, ____, ____, ____, ____,    KC_HOME, KC_PGUP, KC_PGDN, KC_END,
-                    ____, ____, ____,    KC_BSPC, ____, ____
-),
+  [_2] = LAYOUT_split_3x5_3(
+          KC_DEL,       KC_ESC,       KC_ENT,        KC_TAB,        ____,      KC_GRV,         CS_4,       CS_5,         CS_6,      CS_BS,
+    CTL(KC_LEFT), ALT(KC_DOWN),   CMD(KC_UP), SFT(KC_RIGHT),        ____,       CS_EQ,         ____,       ____,         ____,       ____,
+         KC_HOME,      KC_PGDN,      KC_PGUP,        KC_END,        ____,     KC_LBRC,         CS_7,       CS_8,         CS_9,    KC_RBRC,
+                                        ____,          ____,     KC_BSPC,        CS_0,         ____,       ____
+  ),
 
-[_MEDIA] = LAYOUT_split_3x5_3(
-  ____, ____, ____, ____, ____, U_CUT,   U_CPY,   U_PST,   U_UND,   U_RDO,
-  ____, ____, ____, ____, ____, KC_MUTE, KC_MPRV, KC_VOLU, KC_VOLD, KC_MNXT,
-  ____, ____, ____, ____, ____, ____,    ____,    ____,    ____,    ____,
-                    ____, ____, ____,    KC_MPLY, ____,    ____
-),
+  [_3] = LAYOUT_split_3x5_3(
+            ____,         ____,         ____,       KC_CAPS,        ____,     KC_TILD,       KC_DLR,    KC_PERC,      KC_CIRC,    KC_PLUS,
+    CTL(KC_MPRV), ALT(KC_VOLD), CMD(KC_VOLU),  SFT(KC_MNXT),        ____,       KC_LT,      KC_PIPE,      KC_AT,      KC_HASH,      KC_GT,
+            ____,      KC_MUTE,         ____,          ____,        ____,     KC_LCBR,      KC_AMPR,    KC_ASTR,      KC_RPRN,    KC_RCBR,
+                                        ____,          ____, L5(KC_MPLY),     KC_LPRN,         ____,       ____
+  ),
 
-[_FUNCTION] = LAYOUT_split_3x5_3(
-  KC_F11, KC_F4, KC_F5, KC_F6, ____, ____, ____, ____, ____, ____,
-  KC_F10, KC_F1, KC_F2, KC_F3, ____, ____, ____, ____, ____, ____,
-  KC_F12, KC_F7, KC_F8, KC_F9, ____, ____, ____, ____, ____, ____,
-                 ____,  ____,  ____, ____, ____,  ____
-)
+  [_4] = LAYOUT_split_3x5_3(
+            ____,         ____,         ____,       KC_CAPS,        ____,     KC_TILD,       KC_DLR,    KC_PERC,      KC_CIRC,    KC_PLUS,
+    CTL(KC_MPRV), ALT(KC_VOLD), CMD(KC_VOLU),  SFT(KC_MNXT),        ____,       KC_LT,         ____,       ____,         ____,       ____,
+            ____,      KC_MUTE,         ____,          ____,        ____,     KC_LCBR,      KC_AMPR,    KC_ASTR,      KC_RPRN,    KC_RCBR,
+                                        ____,          ____, L5(KC_MPLY),     KC_LPRN,         ____,       ____
+  ),
 
+  [_5] = LAYOUT_split_3x5_3(
+            ____,         ____,         ____,          ____,        ____,        ____,        KC_F4,      KC_F5,        KC_F6,     KC_F11,
+            ____,         ____,         ____,          ____,        ____,        ____,        KC_F1,      KC_F2,        KC_F3,     KC_F10,
+            ____,         ____,         ____,          ____,        ____,        ____,        KC_F7,      KC_F8,        KC_F9,     KC_F12,
+                                        ____,          ____,        ____,        ____,         ____,       ____
+  ),
 };
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case LSFT_T(KC_U):
-          return TAPPING_TERM - 30;
+              return TAPPING_TERM - 30;
         case RSFT_T(KC_H):
-          return TAPPING_TERM - 30;
+             return TAPPING_TERM - 30;
         default:
             return TAPPING_TERM;
     }
 }
 
+void keep_shift_state(uint16_t keycode, keyrecord_t *record) {
+    if (record->event.pressed){
+        register_code(keycode);
+    } else {
+        unregister_code(keycode);
+     }
+}
+
+void swap_shift_state(uint16_t from_keycode, uint16_t to_keycode, keyrecord_t *record ) {
+    if (record->event.pressed){
+        if (get_mods() & MOD_BIT(KC_LSHIFT) || get_mods() & MOD_BIT(KC_RSHIFT)){
+            register_code(to_keycode);
+        } else {
+            register_code(from_keycode);
+        }
+    } else {
+        unregister_code(to_keycode);
+        unregister_code(from_keycode);
+    }
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  switch (keycode) {
-    case CS_DT:
-      if (record->event.pressed){
-        if (get_mods() & MOD_BIT(KC_LSHIFT) || get_mods() & MOD_BIT(KC_RSHIFT)){
-          register_code(KC_1);
-        } else {
-          register_code(KC_DOT);
-        }
-      } else {
-        unregister_code(KC_1);
-        unregister_code(KC_DOT);
-      }
-      return false;
-    case CS_CM:
-      if (record->event.pressed){
-        if (get_mods() & MOD_BIT(KC_LSHIFT) || get_mods() & MOD_BIT(KC_RSHIFT)){
-          register_code(KC_SLSH);
-        } else {
-          register_code(KC_COMM);
-        }
-      } else {
-        unregister_code(KC_SLSH);
-        unregister_code(KC_COMM);
-      }
-      return false;
-    case CS_BS:
-      if (record->event.pressed){
-        if (get_mods() & MOD_BIT(KC_LSHIFT) || get_mods() & MOD_BIT(KC_RSHIFT)){
-          register_code(KC_EQL);
-        } else {
-          register_code(KC_BSLASH);
-        }
-      } else {
-        unregister_code(KC_EQL);
-        unregister_code(KC_BSLASH);
-      }
-      return false;
-    case CS_FS:
-      if (record->event.pressed){
-        if (get_mods() & MOD_BIT(KC_LSHIFT) || get_mods() & MOD_BIT(KC_RSHIFT)){
-          register_code(KC_COMMA);
-        } else {
-          register_code(KC_SLASH);
-        }
-      } else {
-        unregister_code(KC_COMMA);
-        unregister_code(KC_SLASH);
-      }
-      return false;
-    case CS_EQ:
-      if (record->event.pressed){
-        if (get_mods() & MOD_BIT(KC_LSHIFT) || get_mods() & MOD_BIT(KC_RSHIFT)){
-          register_code(KC_DOT);
-        } else {
-          register_code(KC_EQL);
-        }
-      } else {
-        unregister_code(KC_DOT);
-        unregister_code(KC_EQL);
-      }
-      return false;
-    case CS_SC:
-      if (record->event.pressed){
-        if (get_mods() & MOD_BIT(KC_LSHIFT) || get_mods() & MOD_BIT(KC_RSHIFT)){
-          register_code(KC_QUOT);
-        } else {
-          register_code(KC_SCLN);
-        }
-      } else {
-        unregister_code(KC_QUOT);
-        unregister_code(KC_SCLN);
-      }
-      return false;
-    case CS_QU:
-      if (record->event.pressed){
-        if (get_mods() & MOD_BIT(KC_LSHIFT) || get_mods() & MOD_BIT(KC_RSHIFT)){
-          register_code(KC_SCLN);
-        } else {
-          register_code(KC_QUOT);
-        }
-      } else {
-        unregister_code(KC_SCLN);
-        unregister_code(KC_QUOT);
-      }
-      return false;
-    case CS_1:
-      if (record->event.pressed){
-        if (get_mods() & MOD_BIT(KC_LSHIFT) || get_mods() & MOD_BIT(KC_RSHIFT)){
-          register_code(KC_BSLASH);
-        } else {
-          register_code(KC_1);
-        }
-      } else {
-        unregister_code(KC_BSLASH);
-        unregister_code(KC_1);
-      }
-      return false;
-    case CS_2:
-      if (record->event.pressed){
-        register_code(KC_2);
-      } else {
-        unregister_code(KC_2);
-      }
-      return false;
-    case CS_3:
-      if (record->event.pressed){
-        register_code(KC_3);
-      } else {
-        unregister_code(KC_3);
-      }
-      return false;
-    case CS_4:
-      if (record->event.pressed){
-        if (get_mods() & MOD_BIT(KC_LSHIFT) || get_mods() & MOD_BIT(KC_RSHIFT)){
-          register_code(KC_6);
-        } else {
-          register_code(KC_4);
-        }
-      } else {
-        unregister_code(KC_6);
-        unregister_code(KC_4);
-      }
-      return false;
-    case CS_5:
-      if (record->event.pressed){
-        register_code(KC_5);
-      } else {
-        unregister_code(KC_5);
-      }
-      return false;
-    case CS_6:
-      if (record->event.pressed){
-        if (get_mods() & MOD_BIT(KC_LSHIFT) || get_mods() & MOD_BIT(KC_RSHIFT)){
-          register_code(KC_4);
-        } else {
-          register_code(KC_6);
-        }
-      } else {
-        unregister_code(KC_4);
-        unregister_code(KC_6);
-      }
-      return false;
-    case CS_7:
-      if (record->event.pressed){
-        register_code(KC_7);
-      } else {
-        unregister_code(KC_7);
-      }
-      return false;
-    case CS_8:
-      if (record->event.pressed){
-        register_code(KC_8);
-      } else {
-        unregister_code(KC_8);
-      }
-      return false;
-    case CS_9:
-      if (record->event.pressed){
-        register_code(KC_9);
-      } else {
-        unregister_code(KC_9);
-      }
-      return false;
+    switch (keycode) {
+        case CS_DT:
+            swap_shift_state(KC_DOT, KC_1, record);
+            return false;
+        case CS_CM:
+            swap_shift_state(KC_COMMA, KC_SLASH, record);
+            return false;
+        case CS_BS:
+            swap_shift_state(KC_BSLASH, KC_EQL, record);
+            return false;
+        case CS_FS:
+            swap_shift_state(KC_SLASH, KC_COMMA, record);
+            return false;
+        case CS_EQ:
+            swap_shift_state(KC_EQL, KC_DOT, record);
+            return false;
+        case CS_SC:
+            swap_shift_state(KC_SCLN, KC_QUOT, record);
+            return false;
+        case CS_QU:
+            swap_shift_state(KC_QUOT, KC_SCLN, record);
+            return false;
+        case CS_1:
+            swap_shift_state(KC_1, KC_BSLASH, record);
+            return false;
+        case CS_2:
+            keep_shift_state(KC_2, record);
+            return false;
+        case CS_3:
+            keep_shift_state(KC_3, record);
+            return false;
+        case CS_4:
+            keep_shift_state(KC_4, record);
+            return false;
+        case CS_5:
+            keep_shift_state(KC_5, record);
+            return false;
+        case CS_6:
+            keep_shift_state(KC_6, record);
+            return false;
+        case CS_7:
+            keep_shift_state(KC_7, record);
+            return false;
+        case CS_8:
+            keep_shift_state(KC_8, record);
+            return false;
+        case CS_9:
+            swap_shift_state(KC_9, KC_0, record);
+            return false;
+        case CS_0:
+            swap_shift_state(KC_0, KC_9, record);
+            return false;
+        default:
+            return true;
   }
-  return true;
 }
 
 #ifdef OLED_DRIVER_ENABLE
@@ -320,40 +203,40 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 }
 
 static void render_logo(void) {
-  oled_write_P(PSTR("\n         λ"), false);
+  oled_write_P(PSTR("\n         < 3"), false);
 }
 
 static void render_status(void) {
-  oled_write_ln_P(PSTR("B L R M F"), false);
+  oled_write_ln_P(PSTR("0 1 2 3 4 5"), false);
 
    switch (get_highest_layer(layer_state)) {
-    case _BASE:
+    case _0:
       oled_write_ln_P(PSTR("^"), false);
-      oled_write_ln_P(PSTR("Layer: Base"), false);
+      oled_write_ln_P(PSTR("Layer: 0"), false);
       break;
-    case _LOWER:
+    case _1:
       oled_write_ln_P(PSTR("  ^"), false);
-      oled_write_ln_P(PSTR("Layer: Lower"), false);
+      oled_write_ln_P(PSTR("Layer: 1"), false);
       break;
-    case _SLOWER:
-      oled_write_ln_P(PSTR("  ^"), false);
-      oled_write_ln_P(PSTR("Layer: Shifted Lower"), false);
-      break;
-    case _RAISE:
+    case _2:
       oled_write_ln_P(PSTR("    ^"), false);
-      oled_write_ln_P(PSTR("Layer: Raise"), false);
+      oled_write_ln_P(PSTR("Layer: 2"), false);
       break;
-    case _MEDIA:
+    case _3:
       oled_write_ln_P(PSTR("      ^"), false);
-      oled_write_ln_P(PSTR("Layer: Media"), false);
+      oled_write_ln_P(PSTR("Layer: 3"), false);
       break;
-    case _FUNCTION:
+    case _4:
       oled_write_ln_P(PSTR("        ^"), false);
-      oled_write_ln_P(PSTR("Layer: Function"), false);
+      oled_write_ln_P(PSTR("Layer: 4"), false);
+      break;
+    case _5:
+      oled_write_ln_P(PSTR("          ^"), false);
+      oled_write_ln_P(PSTR("Layer: 5"), false);
       break;
     default:
       oled_write_ln_P(PSTR(""), false);
-      oled_write_ln_P(PSTR("Layer: Other"), false);
+      oled_write_ln_P(PSTR("Layer: ?"), false);
   }
 }
 
