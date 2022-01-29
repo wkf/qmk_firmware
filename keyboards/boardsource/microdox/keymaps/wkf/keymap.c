@@ -24,7 +24,6 @@ enum layers {
     _2,
     _3,
     _4,
-    _5,
 };
 
 enum custom_keycodes {
@@ -58,59 +57,57 @@ enum custom_keycodes {
 #define L2(KC) LT(_2, KC)
 #define L3(KC) LT(_3, KC)
 #define L4(KC) LT(_4, KC)
-#define L5(KC) LT(_5, KC)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_0] = LAYOUT_split_3x5_3(
-            KC_J,         KC_C,         KC_Y,          KC_F,        KC_K,        KC_Z,         KC_M,      KC_U,         CS_QU,       KC_Q,
+            KC_J,         KC_C,         KC_Y,      L4(KC_F),        KC_K,        KC_Z,         KC_M,      KC_U,         CS_QU,       KC_Q,
        CTL(KC_R),    ALT(KC_S),    CMD(KC_T),     SFT(KC_H),        KC_P,        KC_W,    SFT(KC_N), CMD(KC_I),     ALT(KC_A),  CTL(KC_O),
            CS_SC,         KC_V,         KC_G,      L3(KC_D),        KC_B,        KC_X,     L4(KC_L),     CS_CM,         CS_DT,    KC_MINS,
                                         ____,          ____,  L1(KC_SPC),    L2(KC_E),         ____,      ____
   ),
 
   [_1] = LAYOUT_split_3x5_3(
-          KC_DEL,       KC_ESC,       KC_ENT,        KC_TAB,        ____,      KC_GRV,         CS_4,       CS_5,         CS_6,      CS_BS,
-    CTL(KC_LEFT), ALT(KC_DOWN),   CMD(KC_UP), SFT(KC_RIGHT),        ____,       CS_EQ,         CS_1,       CS_2,         CS_3,      CS_FS,
-         KC_HOME,      KC_PGDN,      KC_PGUP,        KC_END,        ____,     KC_LBRC,         CS_7,       CS_8,         CS_9,    KC_RBRC,
-                                        ____,          ____,     KC_BSPC,        CS_0,         ____,       ____
+            ____,      KC_MUTE,      KC_MPLY,        KC_TAB,        ____,      KC_GRV,         CS_4,       CS_5,         CS_6,      CS_BS,
+    CTL(KC_MPRV), ALT(KC_VOLD), CMD(KC_VOLU),  SFT(KC_MNXT),        ____,       CS_EQ,         CS_1,       CS_2,         CS_3,      CS_FS,
+         KC_CAPS,         ____,         ____,        KC_SPC,        ____,     KC_LBRC,         CS_7,       CS_8,         CS_9,    KC_RBRC,
+                                        ____,          ____,        ____,        CS_0,         ____,       ____
   ),
 
   [_2] = LAYOUT_split_3x5_3(
-          KC_DEL,       KC_ESC,       KC_ENT,        KC_TAB,        ____,      KC_GRV,         CS_4,       CS_5,         CS_6,      CS_BS,
-    CTL(KC_LEFT), ALT(KC_DOWN),   CMD(KC_UP), SFT(KC_RIGHT),        ____,       CS_EQ,         ____,       ____,         ____,       ____,
-         KC_HOME,      KC_PGDN,      KC_PGUP,        KC_END,        ____,     KC_LBRC,         CS_7,       CS_8,         CS_9,    KC_RBRC,
-                                        ____,          ____,     KC_BSPC,        CS_0,         ____,       ____
+          KC_DEL,       KC_ESC,       KC_ENT,        KC_TAB,        ____,        ____,         ____,       ____,         ____,       ____,
+         KC_LEFT,      KC_DOWN,        KC_UP,      KC_RIGHT,        ____,        ____,         ____,       ____,         ____,       ____,
+         KC_HOME,      KC_PGDN,      KC_PGUP,        KC_END,        ____,        ____,         ____,       ____,         ____,       ____,
+                                        ____,          ____,     KC_BSPC,        ____,         ____,       ____
   ),
 
   [_3] = LAYOUT_split_3x5_3(
-            ____,         ____,         ____,       KC_CAPS,        ____,     KC_TILD,       KC_DLR,    KC_PERC,      KC_CIRC,    KC_PLUS,
-    CTL(KC_MPRV), ALT(KC_VOLD), CMD(KC_VOLU),  SFT(KC_MNXT),        ____,       KC_LT,      KC_PIPE,      KC_AT,      KC_HASH,      KC_GT,
-            ____,      KC_MUTE,         ____,          ____,        ____,     KC_LCBR,      KC_AMPR,    KC_ASTR,      KC_RPRN,    KC_RCBR,
-                                        ____,          ____, L5(KC_MPLY),     KC_LPRN,         ____,       ____
+            ____,         ____,         ____,          ____,        ____,     KC_TILD,       KC_DLR,    KC_PERC,      KC_CIRC,    KC_PLUS,
+            ____,         ____,         ____,          ____,        ____,       KC_LT,      KC_PIPE,      KC_AT,      KC_HASH,      KC_GT,
+            ____,         ____,         ____,          ____,        ____,     KC_LCBR,      KC_AMPR,    KC_ASTR,      KC_RPRN,    KC_RCBR,
+                                        ____,          ____,      KC_SPC,     KC_LPRN,         ____,       ____
   ),
 
   [_4] = LAYOUT_split_3x5_3(
-            ____,         ____,         ____,       KC_CAPS,        ____,     KC_TILD,       KC_DLR,    KC_PERC,      KC_CIRC,    KC_PLUS,
-    CTL(KC_MPRV), ALT(KC_VOLD), CMD(KC_VOLU),  SFT(KC_MNXT),        ____,       KC_LT,         ____,       ____,         ____,       ____,
-            ____,      KC_MUTE,         ____,          ____,        ____,     KC_LCBR,      KC_AMPR,    KC_ASTR,      KC_RPRN,    KC_RCBR,
-                                        ____,          ____, L5(KC_MPLY),     KC_LPRN,         ____,       ____
-  ),
-
-  [_5] = LAYOUT_split_3x5_3(
-            ____,         ____,         ____,          ____,        ____,        ____,        KC_F4,      KC_F5,        KC_F6,     KC_F11,
-            ____,         ____,         ____,          ____,        ____,        ____,        KC_F1,      KC_F2,        KC_F3,     KC_F10,
-            ____,         ____,         ____,          ____,        ____,        ____,        KC_F7,      KC_F8,        KC_F9,     KC_F12,
-                                        ____,          ____,        ____,        ____,         ____,       ____
+           KC_F5,        KC_F6,        KC_F7,         KC_F8,        ____,        ____,         ____,       ____,         ____,       ____,
+           KC_F1,        KC_F2,        KC_F3,         KC_F4,        ____,        ____,         ____,       ____,         ____,       ____,
+           KC_F9,       KC_F10,       KC_F11,        KC_F12,        ____,        ____,         ____,       ____,         ____,       ____,
+                                        ____,          ____,      KC_TAB,        ____,         ____,       ____
   ),
 };
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case LSFT_T(KC_U):
-              return TAPPING_TERM - 30;
-        case RSFT_T(KC_H):
-             return TAPPING_TERM - 30;
+        case SFT(KC_H):
+            return TAPPING_TERM - 30;
+        case SFT(KC_N):
+            return TAPPING_TERM - 30;
+        case SFT(KC_MNXT):
+            return TAPPING_TERM - 30;
+        case L3(KC_D):
+            return TAPPING_TERM - 30;
+        case L4(KC_F):
+            return TAPPING_TERM - 30;
         default:
             return TAPPING_TERM;
     }
@@ -207,7 +204,7 @@ static void render_logo(void) {
 }
 
 static void render_status(void) {
-  oled_write_ln_P(PSTR("0 1 2 3 4 5"), false);
+  oled_write_ln_P(PSTR("0 1 2 3 4"), false);
 
    switch (get_highest_layer(layer_state)) {
     case _0:
@@ -229,10 +226,6 @@ static void render_status(void) {
     case _4:
       oled_write_ln_P(PSTR("        ^"), false);
       oled_write_ln_P(PSTR("Layer: 4"), false);
-      break;
-    case _5:
-      oled_write_ln_P(PSTR("          ^"), false);
-      oled_write_ln_P(PSTR("Layer: 5"), false);
       break;
     default:
       oled_write_ln_P(PSTR(""), false);
