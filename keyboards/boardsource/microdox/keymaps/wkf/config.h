@@ -5,20 +5,6 @@
 #undef TAPPING_TERM
 #define TAPPING_TERM 140
 #define TAPPING_TERM_PER_KEY
-
 #define PERMISSIVE_HOLD
-
 #define IGNORE_MOD_TAP_INTERRUPT
-
 #define BILATERAL_COMBINATIONS
-
-/* #define NO_AUTO_SHIFT_ALPHA */
-/* #define AUTO_SHIFT_TIMEOUT TAPPING_TERM */
-/* #define AUTO_SHIFT_NO_SETUP */
-/* #define AUTO_SHIFT_REPEAT */
-/* #define AUTO_SHIFT_NO_AUTO_REPEAT */
-
-/* #define RETRO_SHIFT 500 */
-
-/* #undef COMBO_COUNT */
-/* #define COMBO_COUNT 2 */
