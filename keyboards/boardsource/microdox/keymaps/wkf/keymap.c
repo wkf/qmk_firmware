@@ -67,13 +67,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             ____,         ____,         ____,          ____,        ____,        ____,        KC_F4,      KC_F5,        KC_F6,      KC_F11,
     CTL(KC_LEFT), ALT(KC_DOWN),   CMD(KC_UP), SFT(KC_RIGHT),        ____,     KC_CAPS,   SFT(KC_F1), CMD(KC_F2),   ALT(KC_F3), CTL(KC_F10),
          KC_HOME,      KC_PGDN,      KC_PGUP,        KC_END,        ____,        ____,        KC_F7,      KC_F8,        KC_F9,      KC_F12,
-                                        ____,          ____, L2(KC_BSPC),        ____,         ____,       ____
+                                        ____,          ____,        ____,        ____,         ____,       ____
   ),
 
   [_2] = LAYOUT_split_3x5_3(
-            ____,         ____,         ____,          ____,        ____,      KC_GRV,         CS_4,       CS_5,         CS_6,       CS_BS,
-     CTL(KC_DEL),  ALT(KC_ESC),  CMD(KC_ENT),   SFT(KC_TAB),        ____,       CS_EQ,    SFT(CS_1),  CMD(CS_2),    ALT(CS_3),  CTL(CS_FS),
-            ____,         ____,         ____,        KC_SPC,        ____,     KC_LBRC,         CS_7,       CS_8,         CS_9,     KC_RBRC,
+            ____,         ____,       KC_SPC,          ____,        ____,      KC_GRV,         CS_4,       CS_5,         CS_6,       CS_BS,
+     CTL(KC_ESC),  ALT(KC_TAB),  CMD(KC_ENT),  SFT(KC_BSPC),        ____,       CS_EQ,    SFT(CS_1),  CMD(CS_2),    ALT(CS_3),  CTL(CS_FS),
+            ____,         ____,         ____,        KC_DEL,        ____,     KC_LBRC,         CS_7,       CS_8,         CS_9,     KC_RBRC,
                                         ____,          ____,        ____,        CS_0,         ____,       ____
   ),
 };
@@ -84,7 +84,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         case SFT(KC_N):
         case SFT(KC_RIGHT):
         case SFT(KC_F1):
-        case SFT(KC_TAB):
+        case SFT(KC_BSPC):
         case SFT(CS_1):
             return TAPPING_TERM - 30;
         default:
@@ -144,7 +144,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case ALT(CS_3):
             return keep_mod_tap_shift_state(KC_3, record);
         case CTL(CS_FS):
-            return swap_mod_tap_shift_state(KC_SLASH, KC_COMMA, record);
+            return swap_mod_tap_shift_state(KC_SLASH, KC_DOT, record);
         case CS_DT:
             return swap_shift_state(KC_DOT, KC_1, record);
         case CS_CM:
@@ -152,9 +152,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case CS_BS:
             return swap_shift_state(KC_BSLASH, KC_EQL, record);
         case CS_FS:
-            return swap_shift_state(KC_SLASH, KC_COMMA, record);
+            return swap_shift_state(KC_SLASH, KC_DOT, record);
         case CS_EQ:
-            return swap_shift_state(KC_EQL, KC_DOT, record);
+            return swap_shift_state(KC_EQL, KC_COMMA, record);
         case CS_SC:
             return swap_shift_state(KC_SCLN, KC_QUOT, record);
         case CS_QU:
