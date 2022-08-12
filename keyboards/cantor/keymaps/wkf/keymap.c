@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: GPL-2.0
 
 #include QMK_KEYBOARD_H
+#include "features/achordion.h"
 
 enum layers {
     _0,
@@ -42,7 +43,7 @@ enum custom_keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_0] = LAYOUT_split_3x6_3(
- KC_NO,           KC_J,         KC_C,         KC_Y,          KC_F,        KC_K,        KC_Z,         KC_M,      KC_U,         CS_QU,        KC_Q, KC_NO,
+KC_NO,           KC_J,         KC_C,         KC_Y,          KC_F,        KC_K,        KC_Z,         KC_M,      KC_U,         CS_QU,        KC_Q, KC_NO,
 KC_NO,       CTL(KC_R),    ALT(KC_S),    CMD(KC_T),     SFT(KC_H),        KC_P,        KC_W,    SFT(KC_N), CMD(KC_I),     ALT(KC_A),   CTL(KC_O), KC_NO,
 KC_NO,           CS_SC,         KC_V,         KC_G,          KC_D,        KC_B,        KC_X,         KC_L,     CS_CM,         CS_DT,     KC_MINS, KC_NO,
                                       KC_ESC,    L2(KC_SPC),      KC_TAB,     KC_BSPC,     L1(KC_E),    KC_ENT
@@ -50,18 +51,22 @@ KC_NO,           CS_SC,         KC_V,         KC_G,          KC_D,        KC_B, 
 
   [_1] = LAYOUT_split_3x6_3(
 KC_NO,            ____,         ____,         ____,          ____,        ____,        ____,        KC_F4,      KC_F5,        KC_F6,      KC_F11, KC_NO,
-KC_NO,    CTL(KC_LEFT), ALT(KC_DOWN),   CMD(KC_UP), SFT(KC_RIGHT),        ____,     KC_CAPS,   SFT(KC_F1), CMD(KC_F2),   ALT(KC_F3), CTL(KC_F10), KC_NO,
+KC_NO,    KC_LEFT, KC_DOWN,   KC_UP, KC_RIGHT,        ____,     KC_CAPS,   SFT(KC_F1), CMD(KC_F2),   ALT(KC_F3), CTL(KC_F10), KC_NO,
 KC_NO,         KC_HOME,      KC_PGDN,      KC_PGUP,        KC_END,        ____,        ____,        KC_F7,      KC_F8,        KC_F9,      KC_F12, KC_NO,
                                         ____,          ____,        ____,        ____,         ____,       QK_REBOOT
 ),
 
   [_2] = LAYOUT_split_3x6_3(
 KC_NO,            ____,      KC_MUTE,      KC_MPLY,          ____,        ____,      KC_GRV,         CS_4,       CS_5,         CS_6,       CS_BS, KC_NO,
-KC_NO,    CTL(KC_MPRV), ALT(KC_VOLD), CMD(KC_VOLU),  SFT(KC_MNXT),        ____,       CS_EQ,    SFT(CS_1),  CMD(CS_2),    ALT(CS_3),  CTL(CS_FS), KC_NO,
+KC_NO,    CTL(KC_MPRV), ALT(KC_VOLD), CMD(KC_VOLU),  SFT(KC_MNXT),        ____,       CS_EQ,    CS_1,  CS_2,    CS_3,  CS_FS, KC_NO,
 KC_NO,            ____,         ____,         ____,        KC_SPC,        ____,     KC_LBRC,         CS_7,       CS_8,         CS_9,     KC_RBRC, KC_NO,
                                         QK_BOOTLOADER,          ____,        ____,      KC_DEL,         CS_0,       ____
   ),
 };
+
+void matrix_scan_user(void) {
+  achordion_task();
+}
 
 bool keep_shift_state(uint16_t keycode, keyrecord_t *record) {
     if (record->event.pressed){
@@ -107,6 +112,8 @@ bool keep_mod_tap_shift_state(uint16_t keycode, keyrecord_t *record) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (!process_achordion(keycode, record)) { return false; }
+
     switch (keycode) {
         case SFT(CS_1):
             return swap_mod_tap_shift_state(KC_1, KC_BSLASH, record);
@@ -152,5 +159,35 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return swap_shift_state(KC_0, KC_9, record);
         default:
             return true;
+  }
+}
+
+bool achordion_chord(uint16_t tap_hold_keycode,
+                     keyrecord_t* tap_hold_record,
+                     uint16_t other_keycode,
+                     keyrecord_t* other_record) {
+
+  // Also allow same-hand holds when the other key is in the rows below the
+  // alphas. I need the `% (MATRIX_ROWS / 2)` because my keyboard is split.
+  if (other_record->event.key.row % (MATRIX_ROWS / 2) >= 3) { return true; }
+
+  // Otherwise, follow the opposite hands rule.
+  return achordion_opposite_hands(tap_hold_record, other_record);
+}
+
+uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
+  return 800;  // Otherwise use a timeout of 800 ms.
+}
+
+bool achordion_eager_mod(uint8_t mod) {
+  switch (mod) {
+    case MOD_LSFT:
+    case MOD_RSFT:
+    case MOD_LCTL:
+    case MOD_RCTL:
+      return true;  // Eagerly apply Shift and Ctrl mods.
+
+    default:
+      return false;
   }
 }
