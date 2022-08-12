@@ -52,7 +52,7 @@ KC_NO,           CS_SC,         KC_V,         KC_G,          KC_D,        KC_B, 
 KC_NO,            ____,         ____,         ____,          ____,        ____,        ____,        KC_F4,      KC_F5,        KC_F6,      KC_F11, KC_NO,
 KC_NO,    CTL(KC_LEFT), ALT(KC_DOWN),   CMD(KC_UP), SFT(KC_RIGHT),        ____,     KC_CAPS,   SFT(KC_F1), CMD(KC_F2),   ALT(KC_F3), CTL(KC_F10), KC_NO,
 KC_NO,         KC_HOME,      KC_PGDN,      KC_PGUP,        KC_END,        ____,        ____,        KC_F7,      KC_F8,        KC_F9,      KC_F12, KC_NO,
-                                        ____,          ____,        ____,        ____,         ____,       QK_BOOTLOADER
+                                        ____,          ____,        ____,        ____,         ____,       QK_REBOOT
 ),
 
   [_2] = LAYOUT_split_3x6_3(
