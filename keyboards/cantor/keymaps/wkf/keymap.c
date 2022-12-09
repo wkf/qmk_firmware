@@ -52,7 +52,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_1] = LAYOUT_split_3x6_3(
     KC_NO, KC_HOME, KC_PGDN, KC_PGUP,   KC_END,    ____,    ____,      KC_F4,      KC_F5,      KC_F6,      KC_F11, KC_NO,
-    KC_NO, KC_LEFT, KC_DOWN,   KC_UP, KC_RIGHT, CW_TOGG,    ____, SFT(KC_F1), CTL(KC_F2), ALT(KC_F3), CMD(KC_F10), KC_NO,
+    KC_NO, KC_LEFT, KC_DOWN,   KC_UP, KC_RIGHT,  ____,    ____, SFT(KC_F1), CTL(KC_F2), ALT(KC_F3), CMD(KC_F10), KC_NO,
     KC_NO,    ____,    ____,    ____,     ____,    ____,    ____, ALL(KC_F7),      KC_F8,      KC_F9,      KC_F12, KC_NO,
                                 ____,     ____,    ____, QK_BOOT,       ____,     QK_RBT
 ),
@@ -80,7 +80,7 @@ bool keep_shift_state(uint16_t keycode, keyrecord_t *record) {
 
 bool swap_shift_state(uint16_t from_keycode, uint16_t to_keycode, keyrecord_t *record ) {
     if (record->event.pressed){
-        if (get_mods() & MOD_BIT(KC_LSHIFT) || get_mods() & MOD_BIT(KC_RSHIFT)){
+        if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)){
             register_code(to_keycode);
         } else {
             register_code(from_keycode);
@@ -102,7 +102,7 @@ bool keep_mod_tap_shift_state(uint16_t keycode, keyrecord_t *record) {
 
  bool swap_mod_tap_shift_state(uint16_t from_keycode, uint16_t to_keycode, keyrecord_t *record ) {
     if (record->tap.count && record->event.pressed){
-        if (get_mods() & MOD_BIT(KC_LSHIFT) || get_mods() & MOD_BIT(KC_RSHIFT)){
+        if (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT)){
             tap_code16(to_keycode);
         } else {
             tap_code16(from_keycode);
@@ -117,7 +117,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     switch (keycode) {
         case SFT(CS_1):
-            return swap_mod_tap_shift_state(KC_1, KC_BSLASH, record);
+            return swap_mod_tap_shift_state(KC_1, KC_BSLS, record);
         case CTL(CS_2):
             return keep_mod_tap_shift_state(KC_2, record);
         case ALT(CS_3):
@@ -129,7 +129,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case CS_CM:
             return swap_shift_state(KC_COMMA, KC_SLASH, record);
         case CS_BS:
-            return swap_shift_state(KC_BSLASH, KC_EQL, record);
+            return swap_shift_state(KC_BSLS, KC_EQL, record);
         case CS_FS:
             return swap_shift_state(KC_SLASH, KC_DOT, record);
         case CS_EQ:
@@ -139,7 +139,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case CS_QU:
             return swap_shift_state(KC_QUOT, KC_SCLN, record);
         case CS_1:
-            return swap_shift_state(KC_1, KC_BSLASH, record);
+            return swap_shift_state(KC_1, KC_BSLS, record);
         case CS_2:
             return keep_shift_state(KC_2, record);
         case CS_3:
